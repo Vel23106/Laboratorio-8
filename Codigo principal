@@ -46,6 +46,7 @@ UART_HandleTypeDef huart2;
 int8_t contador1=0;
 int8_t contador2=0;
 int8_t bloqueoJ=0;
+int8_t jugador=0;
 int8_t inicio;
 
 int8_t ultimot1=0;
@@ -202,6 +203,23 @@ int main(void)
 					  HAL_GPIO_WritePin(Led4c2_GPIO_Port,Led4c2_Pin, 1);
 					  break;
 	  	  }
+		  	if (contador1 >= 4 && jugador == 0) {
+		  		jugador = 1;
+		  	    bloqueoJ = 0; // bloquear botones
+		  	    char msg[] = "Jugador 1 GANA\r\n";
+		  	    HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, HAL_MAX_DELAY);
+		  	    contador1=0;
+		  	    contador2=0;
+		  	}
+
+		  	if (contador2 >= 4 && jugador == 0) {
+		  		jugador = 2;
+		  	    bloqueoJ = 0; // bloquear botones
+		  	    char msg[] = "Jugador 2 GANA\r\n";
+		  	    HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, HAL_MAX_DELAY);
+		  	    contador1=0;
+		  	  	contador2=0;
+		  	}
 
 
     /* USER CODE END WHILE */
