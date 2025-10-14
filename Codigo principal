@@ -208,17 +208,21 @@ int main(void)
 		  	    bloqueoJ = 0; // bloquear botones
 		  	    char msg[] = "Jugador 1 GANA\r\n";
 		  	    HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, HAL_MAX_DELAY);
+		  	    HAL_Delay(500);
 		  	    contador1=0;
 		  	    contador2=0;
+		  	    jugador=0;
 		  	}
 
 		  	if (contador2 >= 4 && jugador == 0) {
-		  		jugador = 2;
+		  		jugador = 1;
 		  	    bloqueoJ = 0; // bloquear botones
 		  	    char msg[] = "Jugador 2 GANA\r\n";
 		  	    HAL_UART_Transmit(&huart2, (uint8_t*)msg, sizeof(msg)-1, HAL_MAX_DELAY);
+                HAL_Delay(500);
 		  	    contador1=0;
 		  	  	contador2=0;
+		  	  	jugador=0;
 		  	}
 
 
